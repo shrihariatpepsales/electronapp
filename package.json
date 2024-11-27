@@ -1,0 +1,40 @@
+{
+  "name": "Pepsales",
+  "version": "1.0.0",
+  "description": "Pepsales",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.2.0",
+    "electron-builder": "^25.1.8"
+  },
+  "dependencies": {},
+  "build": {
+    "appId": "app.pepsales.xyz",
+    "productName": "Pepsales",
+    "files": [
+      "dist/**/*",
+      "index.js",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "output": "build" 
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "./assets/askMeHeroSectionIcon.ico"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "./assets/askMeHeroSectionIcon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "./assets/askMeHeroSectionIcon.png"
+    }
+  }
+}
