@@ -31,6 +31,17 @@ app.on('ready', () => {
     // Enable content protection for the new window
     childWindow.setContentProtection(true);
 
+    // Apply content protection and show when ready
+    childWindow.once('ready-to-show', () => {
+      childWindow.setContentProtection(true);
+      childWindow.show();
+    });
+
+      // Ensure content protection is reapplied on focus
+      childWindow.on('focus', () => {
+        childWindow.setContentProtection(true);
+      });
+
     // Load the URL in the new window
     childWindow.loadURL(url);
 
