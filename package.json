@@ -24,17 +24,18 @@
     "directories": {
       "output": "build" 
     },
+    "icon": "resources/icon.png",
     "win": {
       "target": "nsis",
-      "icon": "./assets/askMeHeroSectionIcon.ico"
+      "icon": "./resources/icon.ico"
     },
     "mac": {
       "target": "dmg",
-      "icon": "./assets/askMeHeroSectionIcon.icns"
+      "icon": "./resources/icon.icns"
     },
     "linux": {
       "target": "AppImage",
-      "icon": "./assets/askMeHeroSectionIcon.png"
+      "icon": "./resources/icon.png"
     }
   }
 }
