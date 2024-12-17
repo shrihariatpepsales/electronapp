@@ -27,27 +27,31 @@ app.on('ready', () => {
         nodeIntegration: true,
       },
     });
-
-    // Enable content protection for the new window
-    childWindow.setContentProtection(true);
-
-    // Apply content protection and show when ready
-    childWindow.once('ready-to-show', () => {
+  
+    // Function to enable content protection
+    const applyContentProtection = () => {
       childWindow.setContentProtection(true);
+    };
+  
+    // Apply content protection on 'ready-to-show'
+    childWindow.once('ready-to-show', () => {
+      applyContentProtection();
       childWindow.show();
     });
-
-      // Ensure content protection is reapplied on focus
-      childWindow.on('focus', () => {
-        childWindow.setContentProtection(true);
-      });
-
+  
+    // Reapply content protection on specific window events
+    childWindow.on('focus', applyContentProtection);
+    childWindow.on('show', applyContentProtection);
+    childWindow.on('restore', applyContentProtection);
+    childWindow.on('maximize', applyContentProtection);
+  
     // Load the URL in the new window
     childWindow.loadURL(url);
-
+  
     // Return an empty object to allow the window creation to proceed
     return { action: 'deny' }; // Deny default behavior, handled manually
   });
+  
 
   // Optional: Handle 'web-contents-created' to catch any other scenarios
   app.on('web-contents-created', (event, contents) => {
